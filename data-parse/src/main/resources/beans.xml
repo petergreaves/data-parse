@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:file="http://www.springframework.org/schema/integration/file" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd">
+
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="location" value="classpath:application.properties"/>
+</bean>
+
+<bean class="com.easyjet.fcp.test.io.DataFileReader" id="dfr">
+    <property name="file" value="${fileInPath}" />
+</bean>
+
+<bean class="com.easyjet.fcp.test.io.ScheduleWriter" id="sw">
+    <property name="path" value="${scheduleOutPath}" />
+    <property name="dateInFormatString" value="${schedulerDateInFormat}" />
+	<property name="dateOutFormatString" value="${schedulerDateOutFormat}" />
+	<property name="keyFormatString" value="${keyFormatString}" />
+	
+	<property name="carrierCodeFrom"  value="${carrierCodeFrom}" />
+	<property name="carrierCodeTo"  value="${carrierCodeTo}" />
+</bean>
+
+<bean class="com.easyjet.fcp.test.util.FlightDataParser" id="parser" />
+
+
+
+</beans>
