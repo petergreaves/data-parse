@@ -22,6 +22,9 @@ public class ScheduleWriter implements IScheduleWriter {
 	private String dateInFormatString;
 	private String dateOutFormatString;
 	private String keyFormatString;
+	private String flightLiteralValue;
+	private String scheduledLiteralValue;
+	
 
 	private String carrierCodeFrom;
 	private String carrierCodeTo;
@@ -107,7 +110,7 @@ public class ScheduleWriter implements IScheduleWriter {
 
 		String result = String.format(";%1$s;%2$s;%3$s;%4$s;%5$s;%6$s;%7$s;%8$s;%9$s;%10$s;%11$s;%12$s;;%13$s;",
 				flightKey, flight.getFlightNumber().replace("\"", ""), flightDepDT, flightArrivalDT, flightDepDT,
-				flightArrivalDT, flightDepDT, flightArrivalDT, "FLIGHT", "SCHEDULED",
+				flightArrivalDT, flightDepDT, flightArrivalDT, flightLiteralValue, scheduledLiteralValue,
 				(flight.getDepAirportCode() + flight.getArrAirportCode()).replaceAll("\"", ""), cc,
 				flight.getAircraftType().replace("\"", ""));
 
@@ -206,5 +209,21 @@ public class ScheduleWriter implements IScheduleWriter {
 
 	public void setCarrierCodeTo(String carrierCodeTo) {
 		this.carrierCodeTo = carrierCodeTo;
+	}
+
+	public String getFlightLiteralValue() {
+		return flightLiteralValue;
+	}
+
+	public void setFlightLiteralValue(String flightLiteralValue) {
+		this.flightLiteralValue = flightLiteralValue;
+	}
+
+	public String getScheduledLiteralValue() {
+		return scheduledLiteralValue;
+	}
+
+	public void setScheduledLiteralValue(String scheduledLiteralValue) {
+		this.scheduledLiteralValue = scheduledLiteralValue;
 	}
 }
